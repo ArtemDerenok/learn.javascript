@@ -1,3 +1,4 @@
-let userName = prompt('Как тебя зовут?');
+let a = prompt("Первое число?", 1);
+let b = prompt("Второе число?", 2);
 
-alert(`Меня зовут ${userName}`);
+alert(+a + +b); 
