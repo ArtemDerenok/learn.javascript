@@ -1,4 +1,3 @@
-let name = 'Джон';
-let admin;
-admin = name;
-alert(admin);
+let userName = prompt('Как тебя зовут?');
+
+alert(`Меня зовут ${userName}`);
