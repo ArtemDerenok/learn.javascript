@@ -1,36 +1,26 @@
-// let age = +prompt('Введите число');
-
-// if (age >= 14 && age <= 90) {
-//   alert('Верно');
-// } else {
-//   alert('Не верно');
+// for (let i = 2; i < 11; i++) {
+//   if (i % 2 === 0) {
+//     console.log(i);
+//   }
 // }
 
-// if (age < 14 && age > 90) {
-//   alert('Верно');
-// } else {
-//   alert('Не верно');
+// let i = 0;
+
+// while (i < 3) {
+//   alert(`number ${i}`);
+//   i++;
 // }
 
-// if (!(age >= 14 && age <=90)) {
-//   alert('Верно');
-// } else {
-//   alert('Не верно');
-// }
+// let i;
+// do {
+//   i = prompt('Введите число', '');
+// } while (i < 100 && i);
 
-let userLogin = prompt('Кто там?');
-let userPassword;
+let n = +prompt('Введите число');
 
-if (userLogin === 'Админ') {
-  if ((userPassword = prompt('Пароль?')) === 'Я главный') {
-    alert('Здравствуйте!');
-  } else if (userPassword !== 'Я главный' && userPassword !== null) {
-    alert('Неверный пароль');
-  } else {
-    alert('Отменено');
+label: for (let i = 2; i < n; i++) {
+  for (let j = 2; j < i; j++) {
+    if (i % j === 0) continue label;
   }
-} else if (userLogin !== 'Админ' && userLogin !== null) {
-  alert('Я вас не знаю');
-} else {
-  alert('Отменено');
+  console.log(i);
 }
