@@ -1,26 +1,29 @@
-// for (let i = 2; i < 11; i++) {
-//   if (i % 2 === 0) {
-//     console.log(i);
-//   }
-// }
+const browser = 'Edge';
 
-// let i = 0;
+if (browser === 'Edge') {
+  alert('You have got the Edge!');
+} else if (browser === 'Chrome' 
+  || browser === 'Safari' 
+  || browser === 'Firefxo' 
+  || browser === 'Opera') {
+  alert('Okey we support these browsers too');
+} else {
+  alert('We hope that this page looks ok');
+}
 
-// while (i < 3) {
-//   alert(`number ${i}`);
-//   i++;
-// }
+const number = +prompt('Введите число между 0 и 3');
 
-// let i;
-// do {
-//   i = prompt('Введите число', '');
-// } while (i < 100 && i);
-
-let n = +prompt('Введите число');
-
-label: for (let i = 2; i < n; i++) {
-  for (let j = 2; j < i; j++) {
-    if (i % j === 0) continue label;
-  }
-  console.log(i);
+switch (number) {
+  case 0:
+    alert('Вы ввели число 0');
+    break;
+  case 1:
+    alert('Вы ввели число 1');
+    break;
+  case 2:
+  case 3:
+    alert('Вы ввели число 2, а может и 3');
+    break;
+  default:
+    alert('Вы ввели неправильные данные');
 }
