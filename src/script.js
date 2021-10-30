@@ -4,10 +4,10 @@ const calculator = {
     this.numberTwo = +prompt("Введите второе число");
   },
   sum() {
-    return this.numberOne + calculator.numberTwo;
+    return this.numberOne + this.numberTwo;
   },
   mul() {
-    return this.numberOne * calculator.numberTwo;
+    return this.numberOne * this.numberTwo;
   },
 };
 
