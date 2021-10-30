@@ -1,34 +1,35 @@
-const calculator = {
-  read() {
-    this.numberOne = +prompt("Введите первое число");
-    this.numberTwo = +prompt("Введите второе число");
-  },
-  sum() {
-    return this.numberOne + calculator.numberTwo;
-  },
-  mul() {
-    return this.numberOne * calculator.numberTwo;
-  },
-};
+function Calculator() {
+  this.read = function () {
+    this.a = +prompt("Введите первое число");
+    this.b = +prompt("Введите второе число");
+  };
 
+  this.sum = function () {
+    return this.a + this.b;
+  };
+
+  this.mul = function () {
+    return this.a * this.b;
+  };
+}
+
+const calculator = new Calculator();
 calculator.read();
+
 console.log(calculator.sum());
 console.log(calculator.mul());
 
-const ladder = {
-  step: 0,
-  up() {
-    this.step += 1;
-    return this;
-  },
-  down() {
-    this.step -= 1;
-    return this;
-  },
-  showStep() {
-    console.log(this.step);
-    return this;
-  },
-};
+function Accumulator(startingValue) {
+  this.value = startingValue;
 
-ladder.up().up().down().showStep();
+  this.read = function () {
+    this.value += +prompt("Введите число");
+  };
+}
+
+const accumulator = new Accumulator(1);
+
+accumulator.read();
+accumulator.read();
+
+console.log(accumulator.value);
