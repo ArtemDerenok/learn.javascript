@@ -1,52 +1,34 @@
-const user = {};
-user.name = "John";
-user.surname = "Smith";
-user.name = "Pete";
-delete user.name;
-
-const schedule = {};
-
-const isEmpty = (obj) => {
-  if (Object.keys(obj).length) {
-    return true;
-  }
-  return false;
+const calculator = {
+  read() {
+    this.numberOne = +prompt("Введите первое число");
+    this.numberTwo = +prompt("Введите второе число");
+  },
+  sum() {
+    return this.numberOne + calculator.numberTwo;
+  },
+  mul() {
+    return this.numberOne * calculator.numberTwo;
+  },
 };
 
-console.log(isEmpty(schedule));
+calculator.read();
+console.log(calculator.sum());
+console.log(calculator.mul());
 
-let sumSalary = 0;
-
-const calcSumSalary = (obj) => {
-  if (isEmpty(obj)) {
-    Object.values(obj).forEach((elem) => {
-      sumSalary += elem;
-    });
-    return sumSalary;
-  }
-  return false;
+const ladder = {
+  step: 0,
+  up() {
+    this.step += 1;
+    return this;
+  },
+  down() {
+    this.step -= 1;
+    return this;
+  },
+  showStep() {
+    console.log(this.step);
+    return this;
+  },
 };
 
-const salaries = {
-  John: 100,
-  Ann: 160,
-  Pete: 130,
-};
-
-console.log(calcSumSalary(salaries));
-
-const menu = {
-  width: 200,
-  height: 300,
-  title: "My menu",
-};
-
-const multiplyNumeric = (obj) => {
-  Object.keys(obj).forEach((elem) => {
-    if (typeof menu[elem] === "number") {
-      menu[elem] *= 2;
-    }
-  });
-};
-multiplyNumeric(menu);
-console.log(menu);
+ladder.up().up().down().showStep();
