@@ -1,27 +1,43 @@
-const a = +prompt("Number one", 0);
-const b = +prompt("Number two", 0);
+// const ucFirst = (str) => {
+//   if (!str) {
+//     return str;
+//   }
+//   return str[0].toUpperCase() + str.slice(1);
+// };
 
-console.log(a + b);
+// console.log(ucFirst("test"));
 
-const readNumber = () => {
-  const num = prompt("Введите число", 0);
-  if (isNaN(num) || num === "") {
-    readNumber();
-  } else {
-    alert(`Число: ${num}`);
+// const checkSpam = (str) => {
+//   if (
+//     str.toLowerCase().includes("viagra") ||
+//     str.toLowerCase().includes("xxx")
+//   ) {
+//     console.log(str);
+//     return true;
+//   }
+//   return false;
+// };
+
+// console.log(checkSpam("ViagrA"));
+
+// const truncate = (str, maxlength) => {
+//   if (str.length > maxlength) {
+//     return `${str.slice(0, maxlength - 1)}...`;
+//   }
+//   return str;
+// };
+
+// console.log(truncate("Вот, что мне хотелось бы сказать на эту тему:", 20));
+
+const extractCurrencyValue = (str) => {
+  let num = "";
+  // eslint-disable-next-line no-restricted-syntax
+  for (const char of str) {
+    if ((+char && char !== " ") || char === "0") {
+      num += char;
+    }
   }
+  return +num;
 };
 
-readNumber();
-
-const random = (min, max) => {
-  return Math.random() * (max - min) + min;
-};
-
-console.log(random(1, 5));
-
-const randomIneger = (min, max) => {
-  return Math.floor(Math.random() * (max - min + 1)) + min;
-};
-
-console.log(randomIneger(1, 5));
+console.log(extractCurrencyValue("$120"));
