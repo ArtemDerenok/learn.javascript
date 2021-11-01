@@ -1,35 +1,27 @@
-function Calculator() {
-  this.read = function () {
-    this.a = +prompt("Введите первое число");
-    this.b = +prompt("Введите второе число");
-  };
+const a = +prompt("Number one", 0);
+const b = +prompt("Number two", 0);
 
-  this.sum = function () {
-    return this.a + this.b;
-  };
+console.log(a + b);
 
-  this.mul = function () {
-    return this.a * this.b;
-  };
-}
+const readNumber = () => {
+  const num = prompt("Введите число", 0);
+  if (isNaN(num) || num === "") {
+    readNumber();
+  } else {
+    alert(`Число: ${num}`);
+  }
+};
 
-const calculator = new Calculator();
-calculator.read();
+readNumber();
 
-console.log(calculator.sum());
-console.log(calculator.mul());
+const random = (min, max) => {
+  return Math.random() * (max - min) + min;
+};
 
-function Accumulator(startingValue) {
-  this.value = startingValue;
+console.log(random(1, 5));
 
-  this.read = function () {
-    this.value += +prompt("Введите число");
-  };
-}
+const randomIneger = (min, max) => {
+  return Math.floor(Math.random() * (max - min + 1)) + min;
+};
 
-const accumulator = new Accumulator(1);
-
-accumulator.read();
-accumulator.read();
-
-console.log(accumulator.value);
+console.log(randomIneger(1, 5));
