@@ -1,43 +1,54 @@
-// const ucFirst = (str) => {
-//   if (!str) {
-//     return str;
-//   }
-//   return str[0].toUpperCase() + str.slice(1);
+// const styles = ["Джаз", "Блюз"];
+
+// styles.push("Рок");
+// console.log(styles);
+// styles[Math.floor((styles.length - 1) / 2)] = "Классика";
+// console.log(styles);
+// console.log(styles.shift());
+// console.log(styles);
+// styles.unshift("Рэп", "Регги");
+// console.log(styles);
+
+// const arr = [];
+
+// const setSumValue = () => {
+//   return prompt("Введите число");
 // };
 
-// console.log(ucFirst("test"));
-
-// const checkSpam = (str) => {
-//   if (
-//     str.toLowerCase().includes("viagra") ||
-//     str.toLowerCase().includes("xxx")
-//   ) {
-//     console.log(str);
-//     return true;
+// const calcSumElemArray = () => {
+//   let sum = 0;
+//   for (let i = 0; i < arr.length; i += 1) {
+//     sum += arr[i];
 //   }
-//   return false;
+//   return sum;
 // };
 
-// console.log(checkSpam("ViagrA"));
-
-// const truncate = (str, maxlength) => {
-//   if (str.length > maxlength) {
-//     return `${str.slice(0, maxlength - 1)}...`;
+// const sumInput = () => {
+//   while (true) {
+//     const elemArray = setSumValue();
+//     if (isFinite(elemArray) && elemArray !== "" && elemArray !== null) {
+//       arr.push(+elemArray);
+//     } else {
+//       console.log(calcSumElemArray());
+//       break;
+//     }
 //   }
-//   return str;
 // };
 
-// console.log(truncate("Вот, что мне хотелось бы сказать на эту тему:", 20));
+// sumInput();
+// console.log(arr);
 
-const extractCurrencyValue = (str) => {
-  let num = "";
-  // eslint-disable-next-line no-restricted-syntax
-  for (const char of str) {
-    if ((+char && char !== " ") || char === "0") {
-      num += char;
+const getMaxSubSum = (arr) => {
+  let maxSum = 0;
+  let maxSubSum = 0;
+  for (let i = 0; i < arr.length; i += 1) {
+    maxSubSum += arr[i];
+    maxSum = Math.max(maxSum, maxSubSum);
+    if (maxSubSum < 0) {
+      maxSubSum = 0;
     }
   }
-  return +num;
+  return maxSum;
 };
 
-console.log(extractCurrencyValue("$120"));
+console.log(getMaxSubSum([2, -1, 2, 3, -9]));
