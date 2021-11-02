@@ -1,54 +1,40 @@
-// const styles = ["Джаз", "Блюз"];
-
-// styles.push("Рок");
-// console.log(styles);
-// styles[Math.floor((styles.length - 1) / 2)] = "Классика";
-// console.log(styles);
-// console.log(styles.shift());
-// console.log(styles);
-// styles.unshift("Рэп", "Регги");
-// console.log(styles);
-
-// const arr = [];
-
-// const setSumValue = () => {
-//   return prompt("Введите число");
-// };
-
-// const calcSumElemArray = () => {
-//   let sum = 0;
-//   for (let i = 0; i < arr.length; i += 1) {
-//     sum += arr[i];
-//   }
-//   return sum;
-// };
-
-// const sumInput = () => {
-//   while (true) {
-//     const elemArray = setSumValue();
-//     if (isFinite(elemArray) && elemArray !== "" && elemArray !== null) {
-//       arr.push(+elemArray);
-//     } else {
-//       console.log(calcSumElemArray());
-//       break;
+// const camelize = (str) => {
+//   const arr = str.split("-");
+//   const result = arr.map((elem, index) => {
+//     let elemCopy = elem;
+//     if (index) {
+//       elemCopy = elemCopy[0].toUpperCase() + elemCopy.slice(1);
 //     }
-//   }
+//     return elemCopy;
+//   });
+//   return result.join("");
 // };
 
-// sumInput();
+// console.log(camelize("background-color"));
+
+// const filterRange = (arr, a, b) => {
+//   const result = arr.filter((elem) => elem >= a && elem <= b);
+//   return result;
+// };
+
+// const arr = [5, 3, 8, 1];
+
+// const filtered = filterRange(arr, 1, 4);
+
+// console.log(filtered);
 // console.log(arr);
 
-const getMaxSubSum = (arr) => {
-  let maxSum = 0;
-  let maxSubSum = 0;
+const filterRangeInPlace = (arr, a, b) => {
   for (let i = 0; i < arr.length; i += 1) {
-    maxSubSum += arr[i];
-    maxSum = Math.max(maxSum, maxSubSum);
-    if (maxSubSum < 0) {
-      maxSubSum = 0;
+    if (arr[i] < a || arr[i] > b) {
+      arr.splice(i, 1);
+      i -= 1;
     }
   }
-  return maxSum;
 };
 
-console.log(getMaxSubSum([2, -1, 2, 3, -9]));
+const arr = [5, 3, 8, 1];
+
+filterRangeInPlace(arr, 1, 4);
+
+console.log(arr);
