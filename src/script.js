@@ -1,39 +1,29 @@
-// const values = [
-//   "Hare",
-//   "Krishna",
-//   "Hare",
-//   "Krishna",
-//   "Krishna",
-//   "Krishna",
-//   "Hare",
-//   "Hare",
-//   ":-O",
-// ];
-
-// const unique = (arr) => {
-//   return Array.from(new Set(arr));
+// const salaries = {
+//   John: 100,
+//   Pete: 300,
+//   Mary: 250,
 // };
 
-// console.log(unique(values));
-
-// const arr = ["nap", "teachers", "cheaters", "PAN", "ear", "era", "hectares"];
-
-// const aclean = (array) => {
-//   const result = array.map((elem) => [
-//     elem.toLowerCase().split("").sort().join(""),
-//     elem,
-//   ]);
-//   const map = new Map(result);
-//   return Array.from(map.values());
+// const sumSalaries = (salary) => {
+//   let sum = 0;
+//   // eslint-disable-next-line no-restricted-syntax
+//   for (const value of Object.values(salary)) {
+//     sum += value;
+//   }
+//   return sum;
 // };
 
-// console.log(aclean(arr));
+// console.log(sumSalaries(salaries));
 
-const map = new Map();
+// Task 2
 
-map.set("name", "John");
+const user = {
+  name: "John",
+  age: 30,
+};
 
-const keys = Array.from(map.keys());
-keys.push("more");
+const count = (obj) => {
+  return Object.values(obj).length;
+};
 
-console.log(keys);
+console.log(count(user));
