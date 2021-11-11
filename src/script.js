@@ -1,62 +1,40 @@
-// Task 1
+/* eslint-disable no-unused-expressions */
+// function makeCounter() {
+//   function counter() {
+//     return counter.count++;
+//   }
 
-// const sum = (num1 = 0) => {
-//   return function (num2) {
-//     return num1 + num2;
+//   counter.count = 0;
+//   counter.set = (value) => {
+//     counter.count = value;
 //   };
-// };
-// console.log(sum(5)(-1));
+//   counter.decrease = () => counter.count--;
+//   return counter;
+// }
 
-// Task 2
+// const counter = makeCounter();
 
-// const inBetween = (a, b) => {
-//   return (elem) => elem >= a && elem <= b;
-// };
+// alert(counter()); // 0
+// alert(counter()); // 1
 
-// const inArray = (array) => {
-//   return (elem) => array.includes(elem);
-// };
+// counter.set(10); // установить новое значение счётчика
 
-// const arr = [1, 2, 3, 4, 5, 6, 7];
+// alert(counter()); // 10
 
-// console.log(arr.filter(inBetween(3, 6)));
+// counter.decrease(); // уменьшить значение счётчика на 1
 
-// console.log(arr.filter(inArray([1, 2, 10])));
+// alert(counter()); // 10 (вместо 11)
+function sum(a) {
+  let currentSum = a;
 
-// Task 3
-
-// const users = [
-//   { name: "John", age: 20, surname: "Johnson" },
-//   { name: "Pete", age: 18, surname: "Peterson" },
-//   { name: "Ann", age: 19, surname: "Hathaway" },
-// ];
-
-// const byField = (field) => {
-//   return (a, b) => (a[field] > b[field] ? 1 : -1);
-// };
-
-// console.log(users.sort(byField("name")));
-// console.log(users.sort(byField("age")));
-
-// Task 4
-
-function makeArmy() {
-  const shooters = [];
-
-  let i = 0;
-  while (i < 10) {
-    const j = i;
-    const shooter = () => {
-      return j;
-    };
-    shooters.push(shooter);
-    i += 1;
+  function f(b) {
+    currentSum += b;
+    return f;
   }
 
-  return shooters;
+  f.toString = () => currentSum;
+
+  return f;
 }
 
-const army = makeArmy();
-
-console.log(army[0]());
-console.log(army[5]());
+console.log(`${sum(1)(2)(3)}`); // 3
