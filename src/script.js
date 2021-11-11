@@ -1,40 +1,34 @@
-/* eslint-disable no-unused-expressions */
-// function makeCounter() {
-//   function counter() {
-//     return counter.count++;
-//   }
+// Task 1
 
-//   counter.count = 0;
-//   counter.set = (value) => {
-//     counter.count = value;
-//   };
-//   counter.decrease = () => counter.count--;
-//   return counter;
-// }
+// const printNumbers = (from, to) => {
+//   let a = from;
 
-// const counter = makeCounter();
+//   const timerId = setInterval(() => {
+//     if (a <= to) {
+//       console.log(a);
+//       a += 1;
+//     } else {
+//       clearInterval(timerId);
+//     }
+//   }, 1000);
+// };
 
-// alert(counter()); // 0
-// alert(counter()); // 1
+// printNumbers(1, 5);
+// Task 2
 
-// counter.set(10); // установить новое значение счётчика
-
-// alert(counter()); // 10
-
-// counter.decrease(); // уменьшить значение счётчика на 1
-
-// alert(counter()); // 10 (вместо 11)
-function sum(a) {
-  let currentSum = a;
-
-  function f(b) {
-    currentSum += b;
-    return f;
-  }
-
-  f.toString = () => currentSum;
-
-  return f;
-}
-
-console.log(`${sum(1)(2)(3)}`); // 3
+let timerId = setTimeout(
+  function printNumbers(from, to) {
+    let a = from;
+    const b = to;
+    if (a <= b) {
+      console.log(from);
+      a += 1;
+      timerId = setTimeout(printNumbers, 1000, a, b);
+    } else {
+      clearTimeout(timerId);
+    }
+  },
+  1000,
+  1,
+  5
+);
