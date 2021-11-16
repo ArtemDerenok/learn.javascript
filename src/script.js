@@ -1,45 +1,49 @@
-// Task 1
+// Task 1;
 
-// function askPassword(ok, fail) {
-//   const password = prompt("Password?", "");
-//   if (password === "rockstar") {
-//     ok();
-//   } else {
-//     fail();
-//   }
-// }
-
-// const user = {
-//   name: "Вася",
-
-//   loginOk() {
-//     alert(`${this.name} logged in`);
-//   },
-
-//   loginFail() {
-//     alert(`${this.name} failed to log in`);
-//   },
+// const head = {
+//   glasses: 1,
 // };
 
-// askPassword(user.loginOk.bind(user), user.loginFail.bind(user));
+// const table = {
+//   pen: 3,
+//   __proto__: head,
+// };
+
+// const bed = {
+//   sheet: 1,
+//   pillow: 2,
+//   __proto__: table,
+// };
+
+// const pockets = {
+//   money: 2000,
+//   __proto__: bed,
+// };
 
 // Task 2
 
-function askPassword(ok, fail) {
-  const password = prompt("Password?", "");
-  if (password === "rockstar") {
-    ok();
-  } else {
-    fail();
-  }
-}
+const hamster = {
+  stomach: [],
 
-const user = {
-  name: "John",
-
-  login(result) {
-    alert(this.name + (result ? " logged in" : " failed to log in"));
+  eat(food) {
+    this.stomach.push(food);
   },
 };
 
-askPassword(user.login.bind(user, true), user.login.bind(user, false)); // ?
+const speedy = {
+  stomach: [],
+  __proto__: hamster,
+};
+
+const lazy = {
+  stomach: [],
+  __proto__: hamster,
+};
+
+// Этот хомяк нашёл еду
+speedy.eat("apple");
+console.log(speedy);
+console.log(speedy.stomach); // apple
+
+// У этого хомяка тоже есть еда. Почему? Исправьте
+console.log(lazy.stomach); // apple
