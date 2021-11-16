@@ -1,49 +1,22 @@
-// Task 1;
+// // Task 1
+// function f() {
+//   alert("Hello!");
+// }
 
-// const head = {
-//   glasses: 1,
+// Function.prototype.defer = function (ms) {
+//   setTimeout(this, ms);
 // };
-
-// const table = {
-//   pen: 3,
-//   __proto__: head,
-// };
-
-// const bed = {
-//   sheet: 1,
-//   pillow: 2,
-//   __proto__: table,
-// };
-
-// const pockets = {
-//   money: 2000,
-//   __proto__: bed,
-// };
+// f.defer(1000);
 
 // Task 2
+function f(a, b) {
+  alert(a + b);
+}
 
-const hamster = {
-  stomach: [],
-
-  eat(food) {
-    this.stomach.push(food);
-  },
+Function.prototype.defer = function (ms) {
+  return (c, d) => {
+    setTimeout(() => this(c, d), ms);
+  }
 };
 
-const speedy = {
-  stomach: [],
-  __proto__: hamster,
-};
-
-const lazy = {
-  stomach: [],
-  __proto__: hamster,
-};
-
-// Этот хомяк нашёл еду
-speedy.eat("apple");
-console.log(speedy);
-console.log(speedy.stomach); // apple
-
-// У этого хомяка тоже есть еда. Почему? Исправьте
-console.log(lazy.stomach); // apple
+f.defer(1000)(1, 2); // выведет 3 через 1 секунду.
