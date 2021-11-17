@@ -1,22 +1,23 @@
-// // Task 1
-// function f() {
-//   alert("Hello!");
-// }
+// Task 1
 
-// Function.prototype.defer = function (ms) {
-//   setTimeout(this, ms);
-// };
-// f.defer(1000);
+const dictionary = Object.create(null);
 
-// Task 2
-function f(a, b) {
-  alert(a + b);
-}
+// ваш код, который добавляет метод dictionary.toString
 
-Function.prototype.defer = function (ms) {
-  return (c, d) => {
-    setTimeout(() => this(c, d), ms);
-  }
+// добавляем немного данных
+dictionary.apple = "Apple";
+dictionary.__proto__ = "test"; // здесь __proto__ -- это обычный ключ
+dictionary.toString = function () {
+  return Object.keys(this).join();
 };
 
-f.defer(1000)(1, 2); // выведет 3 через 1 секунду.
+Object.defineProperty(dictionary, "toString", {
+  enumerable: false,
+});
+// только apple и __proto__ выведены в цикле
+for (const key in dictionary) {
+  console.log(key); // "apple", затем "__proto__"
+}
+
+// ваш метод toString в действии
+alert(dictionary); // "apple,__proto__"
