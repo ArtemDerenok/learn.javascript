@@ -1,23 +1,36 @@
-// Task 1
+class Clock {
+  constructor({ template }) {
+    this.template = template;
+  }
 
-const dictionary = Object.create(null);
+  render() {
+    const date = new Date();
+    let hours = date.getHours();
+    if (hours < 10) hours = `0${hours}`;
 
-// ваш код, который добавляет метод dictionary.toString
+    let mins = date.getMinutes();
+    if (mins < 10) mins = `0${mins}`;
 
-// добавляем немного данных
-dictionary.apple = "Apple";
-dictionary.__proto__ = "test"; // здесь __proto__ -- это обычный ключ
-dictionary.toString = function () {
-  return Object.keys(this).join();
-};
+    let secs = date.getSeconds();
+    if (secs < 10) secs = `0${secs}`;
 
-Object.defineProperty(dictionary, "toString", {
-  enumerable: false,
-});
-// только apple и __proto__ выведены в цикле
-for (const key in dictionary) {
-  console.log(key); // "apple", затем "__proto__"
+    const output = this.template
+      .replace("h", hours)
+      .replace("m", mins)
+      .replace("s", secs);
+
+    console.log(output);
+  }
+
+  stop() {
+    clearInterval(this.timer);
+  }
+
+  start() {
+    this.render();
+    this.timer = setInterval(() => this.render(), 1000);
+  }
 }
 
-// ваш метод toString в действии
-alert(dictionary); // "apple,__proto__"
+const clock = new Clock({ template: "h:m:s" });
+clock.start();
