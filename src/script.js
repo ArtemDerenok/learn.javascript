@@ -1,40 +1,68 @@
-// Task 2
+// Task 1
 
-// function delay(ms) {
-//   return new Promise((resolve, reject) => {
-//     setTimeout(resolve, ms);
-//   });
+// async function loadJson(url) {
+//   let response = await fetch(url);
+//   if (response.status === 200) {
+//     let result = await response.json();
+//     return result;
+//   }
+//   throw new Error("Ошибка");
 // }
 
-// delay(3000).then(() => alert("выполнилось через 3 секунды"));
+// loadJson("no-such-user.json")
+//   .catch(alert);
+
+// Task 2
+
+// class HttpError extends Error {
+//   constructor(response) {
+//     super(`${response.status} for ${response.url}`);
+//     this.name = "HttpError";
+//     this.response = response;
+//   }
+// }
+
+// async function loadJson(url) {
+//   let response = await fetch(url);
+//   if (response.status === 200) {
+//     let result = await response.json();
+//     return result;
+//   } else {
+//     throw new HttpError(response);
+//   }
+// }
+
+// // Запрашивать логин, пока github не вернёт существующего пользователя.
+// async function demoGithubUser() {
+//   let response;
+//   while(true) {
+//     const name = prompt("Введите логин?", "iliakan");
+//     try{
+//       response = await loadJson(`https://api.github.com/users/${name}`);
+//       break;
+//     } catch(error) {
+//       if (error instanceof HttpError && error.response.status === 404) {
+//         alert("Такого пользователя не существует, пожалуйста, повторите ввод.");
+//       } else {
+//         throw error;
+//       }
+//     }
+//   }
+//   alert(`Полное имя: ${response.name}`);
+//   return response;
+// }
+
+// demoGithubUser();
 
 // Task 3
 
-function showCircle(cx, cy, radius) {
-  return new Promise((resolve) => {
-    const div = document.createElement("div");
-    div.style.width = 0;
-    div.style.height = 0;
-    div.style.left = `${cx}px`;
-    div.style.top = `${cy}px`;
-    div.className = "circle";
-    document.body.append(div);
+async function wait() {
+  await new Promise(resolve => setTimeout(resolve, 3000));
 
-    setTimeout(() => {
-      div.style.width = `${radius * 2}px`;
-      div.style.height = `${radius * 2}px`;
-    }, 0);
-    div.addEventListener("transitionend", function handler() {
-      div.removeEventListener("transitionend", handler);
-      resolve(div);
-    });
-  });
+  return 10;
 }
 
-const btn = document.getElementById("btn");
-btn.addEventListener("click", () => {
-  showCircle(150, 150, 100).then((div) => {
-    div.classList.add("message-ball");
-    div.append("Hello, world!");
-  });
-});
+function f() {
+  wait().then(value => console.log(value));
+}
+f();
