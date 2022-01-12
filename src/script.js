@@ -1,3 +1,5 @@
-const expression = prompt("Введите выражение");
+const animals = ["тигр", "ёж", "енот", "ехидна", "АИСТ", "ЯК"];
 
-console.log(eval(expression));
+animals.sort((a, b) => a.localeCompare(b, "ru"));
+
+console.log(animals);
