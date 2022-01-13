@@ -1,5 +1,15 @@
-const animals = ["тигр", "ёж", "енот", "ехидна", "АИСТ", "ЯК"];
+// Task 1
 
-animals.sort((a, b) => a.localeCompare(b, "ru"));
+// console.log(document.body.firstElementChild);
+// console.log(document.body.children[1]);
+// console.log(document.body.children[1].lastElementChild);
 
-console.log(animals);
+// Task 3
+
+const table = document.body.children[2];
+
+const array = Array.from(table.rows);
+
+array.forEach((elem, index) => {
+  elem.cells[index].style.backgroundColor = "red";
+});
