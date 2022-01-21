@@ -1,13 +1,60 @@
-// task 2
+// Task 1
 
-// let scrollWidth = div.offsetWidth - div.clientWidth;
+// const field = document.getElementById("field");
+// const coord = field.getBoundingClientRect();
+// const topLeftCoord = coord.top;
+// const bottomRightCoord = coord.right;
+// const topLeftInterCoord = coord.top + field.clientTop;
+// const bottomRightInterCoord = coord.top + coord.height - field.clientTop;
+// console.log(topLeftCoord);
+// console.log(bottomRightCoord);
+// console.log(topLeftInterCoord);
+// console.log(bottomRightInterCoord);
 
-// Task 3
+// Task 2
 
-const field = document.getElementById("field");
-const ball = document.getElementById("ball");
+function getCoords(elem) {
+  const box = elem.getBoundingClientRect();
 
-console.log(field.offsetWidth);
+  return {
+    top: box.top + window.pageYOffset,
+    right: box.right + window.pageXOffset,
+    bottom: box.bottom + window.pageYOffset,
+    left: box.left + window.pageXOffset,
+  };
+}
 
-ball.style.left = `${field.clientWidth / 2 - ball.clientWidth / 2}px`;
-ball.style.top = `${field.clientHeight / 2 - ball.clientHeight / 2}px`;
+function positionAt(anchor, position, elem) {
+  const coord = getCoords(anchor);
+  anchor.append(elem);
+  elem.style.position = "absolute";
+  if (position === "top") {
+    elem.style.top = `0px`;
+    elem.style.left = `${-anchor.clientLeft}px`;
+  }
+  if (position === "right") {
+    elem.style.left = `${
+      anchor.offsetWidth - elem.offsetWidth - anchor.clientLeft
+    }px`;
+    elem.style.top = `0px`;
+  }
+  if (position === "bottom") {
+    elem.style.top = `${anchor.offsetHeight - elem.offsetHeight}px`;
+    elem.style.left = `${-anchor.clientLeft}px`;
+  }
+}
+
+function showNote(anchor, position, html) {
+  const note = document.createElement("div");
+  note.className = "note";
+  note.innerHTML = html;
+  document.body.append(note);
+
+  positionAt(anchor, position, note);
+}
+
+const blockquote = document.querySelector("blockquote");
+
+showNote(blockquote, "top", "note above");
+showNote(blockquote, "right", "note at the right");
+showNote(blockquote, "bottom", "note below");
