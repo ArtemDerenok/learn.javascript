@@ -1,60 +1,98 @@
 // Task 1
 
-// const field = document.getElementById("field");
-// const coord = field.getBoundingClientRect();
-// const topLeftCoord = coord.top;
-// const bottomRightCoord = coord.right;
-// const topLeftInterCoord = coord.top + field.clientTop;
-// const bottomRightInterCoord = coord.top + coord.height - field.clientTop;
-// console.log(topLeftCoord);
-// console.log(bottomRightCoord);
-// console.log(topLeftInterCoord);
-// console.log(bottomRightInterCoord);
+// const btn = document.getElementById("hider");
+
+// btn.addEventListener("click", () => {
+//   document.getElementById("text").hidden = true;
+// });
 
 // Task 2
 
-function getCoords(elem) {
-  const box = elem.getBoundingClientRect();
+// const btn = document.getElementById("hider");
 
-  return {
-    top: box.top + window.pageYOffset,
-    right: box.right + window.pageXOffset,
-    bottom: box.bottom + window.pageYOffset,
-    left: box.left + window.pageXOffset,
-  };
-}
+// btn.addEventListener("click", function hider() {
+//   this.hidden = true;
+// });
 
-function positionAt(anchor, position, elem) {
-  const coord = getCoords(anchor);
-  anchor.append(elem);
-  elem.style.position = "absolute";
-  if (position === "top") {
-    elem.style.top = `0px`;
-    elem.style.left = `${-anchor.clientLeft}px`;
-  }
-  if (position === "right") {
-    elem.style.left = `${
-      anchor.offsetWidth - elem.offsetWidth - anchor.clientLeft
-    }px`;
-    elem.style.top = `0px`;
-  }
-  if (position === "bottom") {
-    elem.style.top = `${anchor.offsetHeight - elem.offsetHeight}px`;
-    elem.style.left = `${-anchor.clientLeft}px`;
-  }
-}
+// Task 4
 
-function showNote(anchor, position, html) {
-  const note = document.createElement("div");
-  note.className = "note";
-  note.innerHTML = html;
-  document.body.append(note);
+// const field = document.getElementById("field");
+// const ball = document.getElementById("ball");
 
-  positionAt(anchor, position, note);
-}
+// const checkFieldSize = (num) => {
+//   if (num >= field.clientWidth - ball.clientWidth) {
+//     return field.clientWidth - ball.clientWidth;
+//   }
+//   if (num >= field.clientHeight - ball.clientHeight) {
+//     return field.clientHeight - ball.clientHeight;
+//   }
+//   if (num <= 0) {
+//     return 0;
+//   }
+//   return num;
+// };
 
-const blockquote = document.querySelector("blockquote");
+// const caclCoord = (num1, num2) => {
+//   const result = num1 - num2 / 2;
+//   return checkFieldSize(result);
+// };
 
-showNote(blockquote, "top", "note above");
-showNote(blockquote, "right", "note at the right");
-showNote(blockquote, "bottom", "note below");
+// field.addEventListener("click", (event) => {
+//   console.log(event);
+//   ball.style.left = `${caclCoord(event.offsetX, ball.offsetWidth)}px`;
+//   ball.style.top = `${caclCoord(event.offsetY, ball.offsetHeight)}px`;
+// });
+
+// Task 5
+
+// const showMenuBtn = document.querySelector(".title");
+
+// showMenuBtn.addEventListener("click", () => {
+//   showMenuBtn.nextElementSibling.classList.toggle("hidden");
+//   document.querySelector(".menu").classList.toggle("open");
+// });
+
+// Task 6
+
+// const planes = document.querySelectorAll(".pane");
+
+// planes.forEach((elem) => {
+//   elem.firstElementChild.insertAdjacentHTML(
+//     "beforeend",
+//     '<button class="remove-button">[x]</button>'
+//   );
+// });
+
+// const btns = document.querySelectorAll(".remove-button");
+
+// btns.forEach((elem) => {
+//   elem.addEventListener("click", () => {
+//     elem.parentElement.parentElement.remove();
+//   });
+// });
+
+// Task 7
+
+const btnNext = document.querySelector(".next");
+const btnPrev = document.querySelector(".prev");
+const list = document.querySelector("ul");
+const listElems = document.querySelectorAll("li");
+
+const width = 130;
+const count = 3;
+
+let position = 0;
+
+btnNext.addEventListener("click", () => {
+  position -= width * count;
+  position = Math.max(position, -width * (listElems.length - count));
+  list.style.left = `${position}px`;
+  console.log(position);
+});
+
+btnPrev.addEventListener("click", () => {
+  position += width * count;
+  position = Math.min(position, 0);
+  list.style.left = `${position}px`;
+  console.log(position);
+});
