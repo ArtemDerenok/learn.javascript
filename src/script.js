@@ -1,27 +1,26 @@
-// Task 2
+const list = document.getElementById("ul");
 
-// const content = document.getElementById("contents");
+const deleteSelection = () => {
+  const liArr = document.querySelectorAll("li");
 
-// content.addEventListener("click", (event) => {
-//   if (!event.target.closest("A")) {
-//     return;
-//   }
+  for (const elem of liArr) {
+    elem.classList.remove("selected");
+  }
+};
 
-//   const question = confirm("Вы действительно хотите перейти по ссылке?");
-//   if (!question) {
-//     event.preventDefault();
-//   }
-// });
-
-// Task 3
-
-const largeImage = document.getElementById("largeImg");
-const thumb = document.getElementById("thumbs");
-
-thumb.addEventListener("click", (event) => {
-  if (!event.target.closest("A")) {
+list.addEventListener("click", (event) => {
+  if (!event.ctrlKey) {
+    deleteSelection();
+  }
+  if (!event.metaKey) {
+    deleteSelection();
+  }
+  if (event.target.tagName !== "LI") {
     return;
   }
-  largeImage.src = event.target.parentElement.href;
+  event.target.classList.add("selected");
+});
+
+list.addEventListener("mousedown", (event) => {
   event.preventDefault();
 });
