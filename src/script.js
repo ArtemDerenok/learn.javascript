@@ -1,28 +1,26 @@
-const form = document.getElementById("form");
-const beforMoney = document.getElementById("money-before");
-const afterMoney = document.getElementById("money-after");
-const afterGraph = document.getElementById("height-after");
+const showFormBtn = document.getElementById("show-form-btn");
+const formContainer = document.getElementById("prompt-form-container");
+const form = document.getElementById("prompt-form");
+const formMessage = document.getElementById("prompt-message");
 
-const changeGraph = (difference, initial) => {
-  const graphValue = difference * 100 / initial;
-  afterGraph.style.height = `${100 + graphValue}px`;
+const showForm = (message, callback) => {
+  formMessage.innerHTML = message;
+  formContainer.style.display = "block";
+  form.addEventListener("submit", callback, { once: true });
+  form.elements[2].addEventListener(
+    "click",
+    () => {
+      console.log(null);
+      formContainer.style.display = "none";
+    },
+    { once: true }
+  );
 };
 
-const showResult = (befor, after) => {
-  beforMoney.textContent = befor;
-  afterMoney.textContent = after;
-};
-
-const calculateDeposite = (initial, interest, years) => {
-  interest = interest * 0.01;
-  years = years / 12;
-  const result = Math.round(initial * (1 + interest) ** years);
-  showResult(initial, result);
-  changeGraph(result - initial, initial);
-};
-
-calculateDeposite(+form.elements[0].value, +form.elements[2].value , +form.elements[1].value);
-
-form.addEventListener("input", () => {
-  calculateDeposite(+form.elements[0].value, +form.elements[2].value , +form.elements[1].value);
+showFormBtn.addEventListener("click", () => {
+  showForm("Введите что-нибудь<br>...умное :)", function (event) {
+    event.preventDefault();
+    console.log(form.elements[0].value);
+    formContainer.style.display = "none";
+  });
 });
